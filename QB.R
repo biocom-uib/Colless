@@ -21,8 +21,8 @@ QB=function(n){
     }
   }
   #The next if-loop adds the decompositions (n1,n2) based on writing n0 as 2^(l+1)*p+2^l-2t-1
-  if (length(YY)>1){
-    for (i in 1:(length(YY)-1)){
+  if (length(YY)>2){
+    for (i in 2:(length(YY)-1)){
       if (YY[i+1]>YY[i]+1){
         l=YY[i]+1
         p=(sum(2^YY[(i+1):length(YY)]))/2^(l+1)
@@ -30,6 +30,7 @@ QB=function(n){
       }
     }   
   }
-  Descomposicio[order(Descomposicio$n1),]
+  Descomposicio=rbind(Descomposicio,data.frame(n1=2^k*ceiling(n0/2),n2=2^k*floor(n0/2),n=n))
+  Descomposicio[unique(order(Descomposicio$n1)),]
 }
 
